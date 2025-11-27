@@ -258,7 +258,7 @@ def fit_PGMM(gRNA, adata_crispr, output_dir, seed, n_iter):
     threshold = df.loc[(df.prob_normal_component > 0.5), 't'].min()
     
     # create plot of the mixture distribution
-    plot_fitted_model(data, weights, mu, scale, lam, np.log2(threshold), gRNA, output_dir)
+    #plot_fitted_model(data, weights, mu, scale, lam, np.log2(threshold), gRNA, output_dir)
     
     # get cells with gRNA counts above the threshold
     perturbed_cells = adata_crispr.obs_names[selected_guide.toarray().reshape(-1) >= threshold].tolist()

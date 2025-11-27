@@ -228,7 +228,9 @@ def fit_GMM(gRNA, adata_crispr, output_dir, seed, n_iter, nonzero):
     threshold = df.loc[(df.prob_normal_component == True), 't'].min()
 
     # create plot of the mixture distribution
-    plot_fitted_model(data, weights, locs, scales, np.log10(threshold+1), gRNA, output_dir)
+    # Getting this error: https://stackoverflow.com/questions/70553730/seaborn-histplot-with-one-element-gives-bins-must-be-positive-error
+    # Seems like it was fixed in recent versions of seaborn but not yet the version in my crispat env?
+    #plot_fitted_model(data, weights, locs, scales, np.log10(threshold+1), gRNA, output_dir)
     
     # get cells with gRNA counts above the threshold
     perturbed_cells = adata_crispr.obs_names[selected_guide.toarray().reshape(-1) >= threshold].tolist()
